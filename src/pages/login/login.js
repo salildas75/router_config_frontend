@@ -39,8 +39,8 @@ function Login(mainProps) {
   const onSubmitLogin = (data) => {
     let loginData = { ...data, checked: checked };
     console.log(loginData);
-    toastNotify("success", "res?.data?.message");
-    // signIn(loginData);
+
+    signIn(loginData);
   };
   const signIn = (loginData) => {
     Auth.signin(loginData.username, loginData.password).then((response) => {
