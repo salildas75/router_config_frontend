@@ -2,6 +2,8 @@ import axios from "axios";
 import { APIAUTH, configureAxios } from "./config";
 import { jwtDecode } from "jwt-decode";
 import { AlertError, toastNotify } from "../helpers/alert-msg";
+import { getApiCallDynamic } from "../services/api-service";
+import { API } from "../services/api-config";
 
 class Authentication {
   constructor(props) {
@@ -22,31 +24,30 @@ class Authentication {
     let processFeatureList = [];
 
     if (result) {
-      let tokenRoles = result?.roleList[0];
+      let tokenRoles = result?.user_id;
+      console.log("tokenRoles", tokenRoles);
 
-      // // this block will be erased in production
-      // if (process.env.REACT_APP_NAME === "a2p-user") {
-      //   processFeatureList.push("Admin");
-      //   this.result.featureList = processFeatureList;
-
-      //   return;
-      // }
-
-      if (tokenRoles.includes("Admin")) {
-        processFeatureList.push("Admin");
+      if (tokenRoles === "1") {
+        processFeatureList.push("1");
         this.result.featureList = processFeatureList;
       } else {
-        let processData = result?.businessInfo?.featureList;
+        let processData;
+        getApiCallDynamic({ path: API.rolesPermissions }).then((res) => {
+          if (res?.status === 200) {
+            console.log("res.data", res.data);
+            processData = res.data;
+          }
+        });
         // eslint-disable-next-line
         processData?.map((item) => {
-          if (item.actionChosen.length > 0) {
-            processFeatureList.push(item.featureName);
-          }
+          // if (item.actionChosen.length > 0) {
+          processFeatureList.push(item.name);
+          // }
         });
         this.result.featureList = processFeatureList;
       }
     }
-    console.log("processFeatureList", processFeatureList);
+    console.log("processFeatureList", this.result.featureList);
   }
   onSetResult(data = null, error = null) {
     if (data?.access) {
@@ -54,17 +55,15 @@ class Authentication {
       this.result.access = data.access;
       this.result.isPasswordExpired = 0.1;
       this.result.error = null;
-
+      configureAxios({
+        authToken: data.access,
+        authCallback: this.authCallback,
+      });
       this.processFeatureData(this.result.data);
 
       localStorage.setItem(this.session, JSON.stringify(this.result));
       localStorage.setItem("time", new Date());
       localStorage.setItem(process.env.REACT_APP_USER_SESSION, "login");
-
-      configureAxios({
-        authToken: data.access,
-        authCallback: this.authCallback,
-      });
 
       return [true, this.result];
     }

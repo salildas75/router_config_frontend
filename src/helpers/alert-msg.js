@@ -1,7 +1,12 @@
-import { toast } from "react-toastify";
+import { toast, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const toastNotify = (type, msg) => toast[type](msg, { autoClose: 1600 });
+export const toastNotify = (type, msg) =>
+  toast[type](msg, {
+    autoClose: 1600,
+    draggable: true,
+    transition: Zoom,
+  });
 
 export const AlertError = (error) => {
   if (error?.response?.data?.errorMessage) {
@@ -11,7 +16,7 @@ export const AlertError = (error) => {
   } else if (error?.response?.message) {
     toastNotify("error", error.reponse.message);
   } else {
-    toastNotify("error", "Something went wrong. Please try Again!");
+    toastNotify("error", "Server Down! Call admin");
   }
 };
 

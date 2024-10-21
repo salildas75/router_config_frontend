@@ -2,8 +2,8 @@
 
 import axios from "axios";
 import { AlertError, SuccessMsg } from "../helpers/alert-msg";
-import { setRecoil } from "recoil-nexus";
-import { globalSpinner } from "../recoil/atoms";
+// import { setRecoil } from "recoil-nexus";
+// import { globalSpinner } from "../recoil/atoms";
 import { API } from "./api-config";
 
 // if api call is successfull then refresh function will be called
@@ -15,7 +15,7 @@ export function postApiCallDynamic({
   path = "",
   header = "create",
 }) {
-  setRecoil(globalSpinner, true);
+  // setRecoil(globalSpinner, true);
   return axios
     .post(path, data, {
       headers: { "XTR-API-Action": header },
@@ -34,7 +34,7 @@ export function postApiCallDynamic({
     })
     .catch((error) => AlertError(error))
     .finally(() => {
-      setRecoil(globalSpinner, false); // Set the spinner to false after the API call is done
+      // setRecoil(globalSpinner, false); // Set the spinner to false after the API call is done
     });
 }
 export function getApiCallDynamic({
@@ -42,11 +42,11 @@ export function getApiCallDynamic({
   param = {},
   serverMsg = false,
 }) {
-  setRecoil(globalSpinner, true);
+  // setRecoil(globalSpinner, true);
   return axios
     .get(path, {
       params: param,
-      headers: { "XTR-API-Action": "read" },
+      // headers: { "XTR-API-Action": "read" },
     })
     .then((res) => {
       // serverMsg;
@@ -55,7 +55,7 @@ export function getApiCallDynamic({
     })
     .catch((error) => AlertError(error))
     .finally(() => {
-      setRecoil(globalSpinner, false); // Set the spinner to false after the API call is done
+      // setRecoil(globalSpinner, false); // Set the spinner to false after the API call is done
     });
 }
 
@@ -67,7 +67,7 @@ export function postApiCallDynamicWithOutReturn({
   path = "",
   header = "create",
 }) {
-  setRecoil(globalSpinner, true);
+  // setRecoil(globalSpinner, true);
   return axios
     .post(path, data, {
       headers: { "XTR-API-Action": header },
@@ -87,7 +87,7 @@ export function postApiCallDynamicWithOutReturn({
     })
     .catch((error) => AlertError(error))
     .finally(() => {
-      setRecoil(globalSpinner, false); // Set the spinner to false after the API call is done
+      // setRecoil(globalSpinner, false); // Set the spinner to false after the API call is done
     });
 }
 

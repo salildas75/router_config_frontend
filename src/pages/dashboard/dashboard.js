@@ -1,20 +1,13 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import React from "react";
 
-function Dashboard() {
-
-    const navigate = useNavigate();
-
-  const handleLogout = () => {
-    navigate("/");
-  };
+function Dashboard(props) {
   return (
     <div>
       <h2>Dashboard</h2>
       <p>Welcome to your dashboard!</p>
-      <button onClick={handleLogout}>Logout</button>
+      <button onClick={props?.handleLogout}>Logout</button>
     </div>
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;

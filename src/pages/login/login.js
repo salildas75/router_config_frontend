@@ -38,8 +38,6 @@ function Login(mainProps) {
 
   const onSubmitLogin = (data) => {
     let loginData = { ...data, checked: checked };
-    console.log(loginData);
-
     signIn(loginData);
   };
   const signIn = (loginData) => {
@@ -62,7 +60,7 @@ function Login(mainProps) {
             toastNotify("error", response[1].error.errorMessage);
           }
         } else {
-          toastNotify("error", "Something went wrong. Please try Again!");
+          toastNotify("error", "Server Down! Call admin");
         }
       }
     });

@@ -58,7 +58,7 @@ export function configureAxios({
 const API_CONTEXT_PATH = "/sal/api/v1";
 const API_LOGIN = `/users/signin/`;
 const API_SET_PASSWORD = `${API_CONTEXT_PATH}/users/verify`;
-const API_LOGOUT = `${API_CONTEXT_PATH}/auth/signout`;
+const API_LOGOUT = `/users/signout/`;
 const API_CHANGE_PASSWORD = `${API_CONTEXT_PATH}/set/password`;
 const API_EXPIRE_PASSWORD = `${API_CONTEXT_PATH}`;
 const API_FORGET_PASSWORD = `${API_CONTEXT_PATH}/users/password/forget`;

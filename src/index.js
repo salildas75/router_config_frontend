@@ -7,6 +7,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { customTheme } from "./templates/theme/theme";
+// import AlertComponent from "./components/custom-alert";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,7 +15,8 @@ root.render(
     <BrowserRouter>
       <ThemeProvider theme={customTheme}>
         <CssBaseline />
-        <ToastContainer />
+        <ToastContainer stacked />
+        {/* <AlertComponent /> */}
         <App />
       </ThemeProvider>
     </BrowserRouter>

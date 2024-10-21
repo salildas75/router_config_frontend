@@ -155,7 +155,7 @@ function App() {
     <Routes>
       <Route path={Path.index} element={<Index {...mainProps} />} />
       <Route path={Path.login} element={<Login {...mainProps} />} />
-      <Route path={Path.dashboard} element={<Dashboard />} />
+      <Route path={Path.dashboard} element={<Dashboard {...mainProps} />} />
     </Routes>
   );
 }
