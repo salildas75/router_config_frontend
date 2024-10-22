@@ -4,6 +4,7 @@ import { jwtDecode } from "jwt-decode";
 import { AlertError, toastNotify } from "../helpers/alert-msg";
 import { getApiCallDynamic } from "../services/api-service";
 import { API } from "../services/api-config";
+import { ROLE_LIST } from "../constants/constant";
 
 class Authentication {
   constructor(props) {
@@ -27,14 +28,13 @@ class Authentication {
       let tokenRoles = result?.user_id;
       console.log("tokenRoles", tokenRoles);
 
-      if (tokenRoles === "1") {
-        processFeatureList.push("1");
+      if (tokenRoles === ROLE_LIST.admin) {
+        processFeatureList.push(ROLE_LIST.admin);
         this.result.featureList = processFeatureList;
       } else {
         let processData;
         getApiCallDynamic({ path: API.rolesPermissions }).then((res) => {
           if (res?.status === 200) {
-            console.log("res.data", res.data);
             processData = res.data;
           }
         });
@@ -47,7 +47,7 @@ class Authentication {
         this.result.featureList = processFeatureList;
       }
     }
-    console.log("processFeatureList", this.result.featureList);
+    console.log("processFeatureList", processFeatureList);
   }
   onSetResult(data = null, error = null) {
     if (data?.access) {

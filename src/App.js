@@ -12,6 +12,10 @@ import { useEffect, useState } from "react";
 import { configureAxios } from "./auth/config";
 import { Auth } from "./auth/auth";
 import { Path } from "./routes/route-config";
+import PortalLayout from "./templates/layout/portal-layout";
+import Unauthorized from "./pages/not-found/unauthorized";
+import NotFound from "./pages/not-found/not-found";
+import Users from "./pages/user-management/users/users";
 
 function Index(props) {
   if (props.isAuthenticated) {
@@ -155,7 +159,13 @@ function App() {
     <Routes>
       <Route path={Path.index} element={<Index {...mainProps} />} />
       <Route path={Path.login} element={<Login {...mainProps} />} />
-      <Route path={Path.dashboard} element={<Dashboard {...mainProps} />} />
+      <Route path={Path.dashboard} element={<PortalLayout {...mainProps} />}>
+        <Route index element={<Dashboard {...mainProps} />} />
+        <Route path={Path.users} element={<Users />} />
+      </Route>
+      {/* Finally, catch all unmatched routes */}
+      <Route path="/unauthorized" element={<Unauthorized />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

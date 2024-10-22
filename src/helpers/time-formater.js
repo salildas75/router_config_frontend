@@ -1,4 +1,4 @@
-import moment from "moment";
+// import moment from "moment";
 
 export function TimeStampToDateFormater(date) {
   if (date == null) {
@@ -65,12 +65,12 @@ export function TimeStampToDateMonth(date) {
 }
 
 // epoch time to mm dd, year convertion
-export function TimeStampToMonthDateYearForInput(date) {
-  if (date == null) {
-    return "";
-  }
-  return moment.unix(date / 1000).format("YYYY-MM-DD");
-}
+// export function TimeStampToMonthDateYearForInput(date) {
+//   if (date == null) {
+//     return "";
+//   }
+//   return moment.unix(date / 1000).format("YYYY-MM-DD");
+// }
 
 // mm dd, year to epoch time convertion
 export function DateToTimestapmFormater(data) {

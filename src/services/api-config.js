@@ -10,8 +10,8 @@ const API_FILE_MANaGMENT = "/dm/api/v1/local/files";
 
 const API_PASSWORD_CHANGE = `${API_CONTEXT_PATH_USER}/users/password/change`;
 const API_ADD_PORTAL_USERS = `${API_CONTEXT_PATH_USER}/users`;
-const API_ROLES = `${API_CONTEXT_PATH_USER}/roles`;
-const API_SYSTEM_ALL_USER = `${API_CONTEXT_PATH_USER}/users/system`;
+const API_ROLES = `/roles/`;
+const API_SYSTEM_ALL_USER = `/users/`;
 
 const API_ROLES_PERMISSIONS = "/roles/permissions/";
 

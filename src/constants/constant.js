@@ -1,5 +1,5 @@
 export const ROLE_LIST = {
-  admin: "Admin",
+  admin: 1,
   customer: "Customer",
 };
 

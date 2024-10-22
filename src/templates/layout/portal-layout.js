@@ -9,14 +9,7 @@ import { Outlet } from "react-router";
 import Sidemenu from "../../menu/side-menu";
 import AppBarMenu from "../../menu/app-bar-menu";
 import { Toolbar } from "@mui/material";
-import OssLogo from "../../assets/layout_image.png";
-import BidaLogo from "../../assets/bida_logo.png";
 import { useState } from "react";
-import { TitasLogoSVG } from "../../assets/icons/icons";
-import { all } from "axios";
-import { useRecoilState } from "recoil";
-import { profileState } from "../../recoil/atoms";
-import { BIDA_CUSTOMER } from "../../constants/constant";
 import LogInImage from "../../assets/login_image.png";
 export const drawerWidth = 240;
 
@@ -67,7 +60,6 @@ export default function MiniDrawer(mainProps) {
   const handleToggle = () => {
     setOpen((prev) => !prev);
   };
-  let [profileData, setProfileData] = useRecoilState(profileState);
   return (
     <Box display={"flex"} overflow={`hidden`}>
       {/* App bar and top menu bar */}
@@ -78,37 +70,36 @@ export default function MiniDrawer(mainProps) {
         mainProps={mainProps}
       />
 
-      {profileData?.customerType !== BIDA_CUSTOMER && (
-        <Drawer variant="permanent" open={open}>
-          <Stack
-            color={"#FFFFFF"}
-            bgcolor={"#365E32"}
-            width={"100%"}
-            height={"100%"}
-            justifyContent={"space-between"}
-            sx={{
-              overflowY: "auto",
-              overflowX: "hidden",
-            }}
-          >
-            <Box>
-              <Box
-                mx={"auto"}
-                mt={open ? 2 : 1}
-                width={open ? "35%" : "80%"}
-                sx={{
-                  transition: "width 150ms ease-in",
-                }}
-              >
-                <img
-                  alt="log in"
-                  src={LogInImage}
-                  height={"80px"}
-                  width={"80px"}
-                />
-                {/* <TitasLogoSVG /> */}
-              </Box>
-              {/* <Box
+      <Drawer variant="permanent" open={open}>
+        <Stack
+          color={"#FFFFFF"}
+          bgcolor={"#000000"}
+          width={"100%"}
+          height={"100%"}
+          justifyContent={"space-between"}
+          sx={{
+            overflowY: "auto",
+            overflowX: "hidden",
+          }}
+        >
+          <Box>
+            <Box
+              mx={"auto"}
+              mt={open ? 2 : 1}
+              width={open ? "35%" : "80%"}
+              sx={{
+                transition: "width 150ms ease-in",
+              }}
+            >
+              <img
+                alt="log in"
+                src={LogInImage}
+                height={"80px"}
+                width={"80px"}
+              />
+              {/* <TitasLogoSVG /> */}
+            </Box>
+            {/* <Box
                 mb={open ? 2 : 1}
                 textAlign={"center"}
                 height={open ? "auto" : 0}
@@ -124,14 +115,13 @@ export default function MiniDrawer(mainProps) {
                   {`Company Limited`}
                 </Typography>
               </Box> */}
-              <Divider sx={{ mx: 1 }} color={"white"} />
+            <Divider sx={{ mx: 1 }} color={"white"} />
 
-              {/* Side menu bar  */}
-              <Sidemenu open={open} mainProps={mainProps} />
-            </Box>
-          </Stack>
-        </Drawer>
-      )}
+            {/* Side menu bar  */}
+            <Sidemenu open={open} mainProps={mainProps} />
+          </Box>
+        </Stack>
+      </Drawer>
 
       <Box
         component="main"

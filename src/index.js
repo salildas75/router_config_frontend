@@ -11,16 +11,16 @@ import { customTheme } from "./templates/theme/theme";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <ThemeProvider theme={customTheme}>
-        <CssBaseline />
-        <ToastContainer stacked />
-        {/* <AlertComponent /> */}
-        <App />
-      </ThemeProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <BrowserRouter>
+    <ThemeProvider theme={customTheme}>
+      <CssBaseline />
+      <ToastContainer stacked />
+      {/* <AlertComponent /> */}
+      <App />
+    </ThemeProvider>
+  </BrowserRouter>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

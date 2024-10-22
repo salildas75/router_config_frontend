@@ -11,7 +11,7 @@ import { FileDownload } from "@mui/icons-material";
 import { jsPDF } from "jspdf"; //or use your library of choice here
 import autoTable from "jspdf-autotable";
 import { TimeStampToDateFormater } from "../time-formater";
-import { statusFormatter } from "../../components/user-status";
+// import { statusFormatter } from "../../components/user-status";
 import logoImage from "../../assets/login_image.png";
 
 function CustomReactMaterialTable({
@@ -20,7 +20,7 @@ function CustomReactMaterialTable({
   enableColumnActions = false,
   endPoint,
   params,
-  companyName = "Titas Gas Transmission & Distribution Company Limited",
+  companyName = "ABC Company Limited",
   enableColumnFilterModes = false,
 
   enableSorting = false,
@@ -101,7 +101,7 @@ function CustomReactMaterialTable({
     setData([]);
     setRowCount(0);
 
-    if (!data.length) {
+    if (!data?.length) {
       setIsLoading(true);
     } else {
       setIsRefetching(true);
@@ -134,13 +134,14 @@ function CustomReactMaterialTable({
       });
     try {
       const response = await axios.get(url.href, {
-        headers: { "XTR-API-Action": "read" },
+        // headers: { "XTR-API-Action": "read" },
       });
       const json = response;
+      console.log(json.data);
 
-      setData(json.data?.dataList);
-      setMetaData(json.data.totalPages);
-      setRowCount(json.data?.dataList.length);
+      setData(json.data);
+      // setMetaData(json.data.totalPages);
+      setRowCount(json.data?.length);
     } catch (error) {
       setIsError(true);
       console.error(error);
@@ -229,9 +230,9 @@ function CustomReactMaterialTable({
           if (c.header.toLowerCase().includes("date")) {
             return TimeStampToDateFormater(cellValue);
           }
-          if (c.header.toLowerCase().includes("status")) {
-            return statusFormatter(cellValue);
-          }
+          // if (c.header.toLowerCase().includes("status")) {
+          //   return statusFormatter(cellValue);
+          // }
           return cellValue;
         }),
     ]);
