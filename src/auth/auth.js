@@ -33,11 +33,11 @@ class Authentication {
         this.result.featureList = processFeatureList;
       } else {
         let processData;
-        getApiCallDynamic({ path: API.rolesPermissions }).then((res) => {
-          if (res?.status === 200) {
-            processData = res.data;
-          }
-        });
+        // getApiCallDynamic({ path: API.rolesPermissions }).then((res) => {
+        //   if (res?.status === 200) {
+        //     processData = res.data;
+        //   }
+        // });
         // eslint-disable-next-line
         processData?.map((item) => {
           // if (item.actionChosen.length > 0) {

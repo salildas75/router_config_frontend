@@ -159,8 +159,9 @@ function App() {
     <Routes>
       <Route path={Path.index} element={<Index {...mainProps} />} />
       <Route path={Path.login} element={<Login {...mainProps} />} />
-      <Route path={Path.dashboard} element={<PortalLayout {...mainProps} />}>
-        <Route index element={<Dashboard {...mainProps} />} />
+      <Route path={Path.index} element={<PortalLayout {...mainProps} />}>
+        <Route index element={<Navigate to={Path.dashboard} />} />
+        <Route path={Path.dashboard} element={<Dashboard {...mainProps} />} />
         <Route path={Path.users} element={<Users />} />
       </Route>
       {/* Finally, catch all unmatched routes */}
